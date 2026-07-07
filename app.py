@@ -29,21 +29,8 @@ st.markdown("---")
 def load_model_and_features():
     booster = xgb.Booster()
     booster.load_model("olive_oil_xgb_model.json")
-    try:
-        with open("feature_names.json", "r") as f:
-            feature_names = json.load(f)
-    except Exception:
-        feature_names = [
-            'Altitude_m', 'Annual_Rainfall_mm_year', 'Spring_Rainfall_mm_season',
-            'Summer_Max_Temp_C_avg', 'Frost_Days_count', 'Irrigation_L_per_tree',
-            'Tree_Age_Years', 'Tree_Density_per_hectare', 'Fertilizer_20_20_20_kg_per_tree',
-            'Pest_Pressure_Index', 'Soil_Type_enc', 'Pruning_Intensity_enc',
-            'Prev_Year_Oil', 'Prev_Year_Olives', 'Oil_YoY_Change', 'Rain_3yr_avg',
-            'Rain_2yr_avg', 'Irr_3yr_avg', 'Heat_Stress', 'Temp_Rain_Index',
-            'Spring_Rain_Ratio', 'Frost_Altitude', 'Total_Water', 'Water_per_Tree',
-            'Irr_Rain_Ratio', 'Tree_Productivity', 'Fert_per_Tree', 'Age_Density_Ratio',
-            'Field_Oil_Mean', 'Oil_vs_Field_Mean'
-        ]
+    # Always read feature names directly from the model to guarantee correct order
+    feature_names = booster.feature_names
     return booster, feature_names
 
 try:
