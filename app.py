@@ -71,9 +71,9 @@ altitude = st.sidebar.number_input(
     help="How high is your field above sea level?"
 )
 field_mean = st.sidebar.number_input(
-    "Your field's average historical yield (kg/ha)",
+    "Your field's average historical oil yield (kg/ha)",
     min_value=500, max_value=3000, value=1500,
-    help="What is the typical oil yield for this field in a normal year?"
+    help="What is the typical olive oil yield for this field in a normal year?"
 )
 prev_oil = st.sidebar.number_input(
     "Last year's oil yield (kg/ha)",
